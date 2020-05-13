@@ -2,6 +2,6 @@
 {
     public interface IKeyValueFactory
     {
-        IKeyValueService<T> CreateKeyValue<T>(string name);
+        IKeyValueService<T> CreateKeyValue<T>(string name) where T : class;
     }
 }

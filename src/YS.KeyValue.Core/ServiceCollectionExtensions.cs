@@ -9,16 +9,10 @@ namespace Microsoft.Extensions.DependencyInjection
         public static IServiceCollection AddKeyValue(this IServiceCollection serviceCollection)
         {
             serviceCollection.TryAddSingleton<IKeyValueFactory, KeyValueFactory>();
-            serviceCollection.TryAddSingleton(typeof(IKeyValueService<>), typeof(TypedKeyValueService<>));
+            serviceCollection.TryAddSingleton(typeof(IKeyValueService<>), typeof(KeyValueFactory.TypedKeyValueService<>));
             return serviceCollection;
         }
 
-        class TypedKeyValueService<T> : KeyValueService<T>
-        {
-            public TypedKeyValueService(IOptions<KeyValueOptions> options, IKeyValueProvider keyValueProvider) :
-                base(options, typeof(T).FullName, keyValueProvider)
-            {
-            }
-        }
+
     }
 }

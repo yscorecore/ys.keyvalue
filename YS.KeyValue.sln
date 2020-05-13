@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YS.KeyValue.Core", "src\YS.KeyValue.Core\YS.KeyValue.Core.csproj", "{A6651BA1-FF26-4902-9813-CB7198A54EA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.KeyValue.Core", "src\YS.KeyValue.Core\YS.KeyValue.Core.csproj", "{A6651BA1-FF26-4902-9813-CB7198A54EA7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A95BA448-DA02-4CCC-8656-485D38AEFF51}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.KeyValue.Impl.Dynamo", "src\YS.KeyValue.Impl.Dynamo\YS.KeyValue.Impl.Dynamo.csproj", "{75D621D5-8023-416C-B83B-EEA98766CB98}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YS.KeyValue.Impl.Mongo", "src\YS.KeyValue.Impl.Mongo\YS.KeyValue.Impl.Mongo.csproj", "{91EFEDCC-7CE8-48E2-8B2A-BEAD0A7EA56E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DF98F2AB-FEAE-4E9A-9C5E-F6A6416C64A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YS.KeyValue.Impl.Mongo.UnitTest", "test\YS.KeyValue.Impl.Mongo.UnitTest\YS.KeyValue.Impl.Mongo.UnitTest.csproj", "{8B6C6ED9-F71A-4B1C-9164-CCFAA535BB54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +29,14 @@ Global
 		{75D621D5-8023-416C-B83B-EEA98766CB98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75D621D5-8023-416C-B83B-EEA98766CB98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75D621D5-8023-416C-B83B-EEA98766CB98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91EFEDCC-7CE8-48E2-8B2A-BEAD0A7EA56E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91EFEDCC-7CE8-48E2-8B2A-BEAD0A7EA56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91EFEDCC-7CE8-48E2-8B2A-BEAD0A7EA56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91EFEDCC-7CE8-48E2-8B2A-BEAD0A7EA56E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B6C6ED9-F71A-4B1C-9164-CCFAA535BB54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B6C6ED9-F71A-4B1C-9164-CCFAA535BB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B6C6ED9-F71A-4B1C-9164-CCFAA535BB54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B6C6ED9-F71A-4B1C-9164-CCFAA535BB54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +44,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A6651BA1-FF26-4902-9813-CB7198A54EA7} = {A95BA448-DA02-4CCC-8656-485D38AEFF51}
 		{75D621D5-8023-416C-B83B-EEA98766CB98} = {A95BA448-DA02-4CCC-8656-485D38AEFF51}
+		{91EFEDCC-7CE8-48E2-8B2A-BEAD0A7EA56E} = {A95BA448-DA02-4CCC-8656-485D38AEFF51}
+		{8B6C6ED9-F71A-4B1C-9164-CCFAA535BB54} = {DF98F2AB-FEAE-4E9A-9C5E-F6A6416C64A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DB11BB21-3F5D-42D6-8737-F19C0666F1F8}
