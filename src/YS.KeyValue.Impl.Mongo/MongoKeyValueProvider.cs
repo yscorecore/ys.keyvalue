@@ -24,6 +24,7 @@ namespace YS.KeyValue.Impl.Mongo
                 return mongoClient.GetDatabase(this.mongoOptions.Value.DataBase);
             }, true);
 
+
         }
         private IOptions<MongoOptions> mongoOptions;
         private Lazy<IMongoDatabase> database;
@@ -77,6 +78,7 @@ namespace YS.KeyValue.Impl.Mongo
         }
         private async Task<IMongoCollection<T>> EntryCollection<T>(string collectionName)
         {
+            //TODO add to cache
             var nameInDatabase = database.Value.ListCollectionNames(new ListCollectionNamesOptions
             {
                 Filter = new BsonDocument { { "name", collectionName } }

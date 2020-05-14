@@ -2,15 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>YS.KeyValue.Impl.Mongo</RootNamespace>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="YS.Knife.Hosting" Version="1.2.5" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\src\YS.KeyValue.Impl.Mongo\YS.KeyValue.Impl.Mongo.csproj" />
+    <ProjectReference Include="..\..\src\YS.KeyValue.Impl.Dynamo\YS.KeyValue.Impl.Dynamo.csproj" />
   </ItemGroup>
 
 </Project>

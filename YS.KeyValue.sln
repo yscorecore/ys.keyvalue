@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DF98F2AB-F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YS.KeyValue.Impl.Mongo.UnitTest", "test\YS.KeyValue.Impl.Mongo.UnitTest\YS.KeyValue.Impl.Mongo.UnitTest.csproj", "{8B6C6ED9-F71A-4B1C-9164-CCFAA535BB54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YS.KeyValue.Impl.Dynamo.UnitTest", "test\YS.KeyValue.Impl.Dynamo.UnitTest\YS.KeyValue.Impl.Dynamo.UnitTest.csproj", "{320DA2CE-4E49-4272-B475-8B481AC175F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{8B6C6ED9-F71A-4B1C-9164-CCFAA535BB54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B6C6ED9-F71A-4B1C-9164-CCFAA535BB54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B6C6ED9-F71A-4B1C-9164-CCFAA535BB54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{320DA2CE-4E49-4272-B475-8B481AC175F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320DA2CE-4E49-4272-B475-8B481AC175F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320DA2CE-4E49-4272-B475-8B481AC175F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320DA2CE-4E49-4272-B475-8B481AC175F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{75D621D5-8023-416C-B83B-EEA98766CB98} = {A95BA448-DA02-4CCC-8656-485D38AEFF51}
 		{91EFEDCC-7CE8-48E2-8B2A-BEAD0A7EA56E} = {A95BA448-DA02-4CCC-8656-485D38AEFF51}
 		{8B6C6ED9-F71A-4B1C-9164-CCFAA535BB54} = {DF98F2AB-FEAE-4E9A-9C5E-F6A6416C64A9}
+		{320DA2CE-4E49-4272-B475-8B481AC175F9} = {DF98F2AB-FEAE-4E9A-9C5E-F6A6416C64A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DB11BB21-3F5D-42D6-8737-F19C0666F1F8}
