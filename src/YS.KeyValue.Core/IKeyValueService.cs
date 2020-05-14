@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace YS.KeyValue
 {
     public interface IKeyValueService<T>
-         where T : class
+         where T : class, new()
     {
         Task<T> GetByKey(string key);
 

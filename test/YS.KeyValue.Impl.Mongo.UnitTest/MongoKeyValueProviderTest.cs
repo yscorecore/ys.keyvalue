@@ -26,8 +26,8 @@ namespace YS.KeyValue.Impl.Mongo.UnitTest
         public async Task ShouldSuccessWhenAddAValideEntity()
         {
             var provider = this.GetService<IKeyValueProvider>();
-            await provider.AddOrUpdate("abc", "u0001", new Person() { Name = "zhangsan", Age = 12 });
-            var person1 = await provider.GetByKey<Person>("abc", "u0001");
+            await provider.AddOrUpdate("_", "u0001", new Person() { Name = "zhangsan", Age = 12 });
+            var person1 = await provider.GetByKey<Person>("_", "u0001");
             Assert.IsNotNull(person1);
             Assert.AreEqual("zhangsan", person1.Name);
             Assert.AreEqual(12, person1.Age);

@@ -16,8 +16,8 @@ namespace YS.KeyValue.Impl.Dynamo.UnitTest
         public async Task ShouldSuccessWhenAddAValideEntity()
         {
             var provider = this.GetService<IKeyValueProvider>();
-            await provider.AddOrUpdate("abcd", "u0001", new Person() { Name = "zhangsan", Age = 12 });
-            var person1 = await provider.GetByKey<Person>("abcd", "u0001");
+            await provider.AddOrUpdate("_.abc", "u0001", new Person() { Name = "zhangsan", Age = 12 });
+            var person1 = await provider.GetByKey<Person>("_.abc", "u0001");
             Assert.IsNotNull(person1);
             Assert.AreEqual("zhangsan", person1.Name);
             Assert.AreEqual(12, person1.Age);

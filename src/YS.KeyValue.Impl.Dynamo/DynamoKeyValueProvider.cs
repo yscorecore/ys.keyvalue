@@ -29,9 +29,9 @@ namespace YS.KeyValue.Impl.Dynamo
         private readonly DynamoDBContext dbContext;
         private readonly AmazonDynamoDBClient client;
         public async Task AddOrUpdate<T>(string category, string key, T value)
+              where T : class,new()
         {
-            var tableName = NormalCategoryName(category);
-            var table = await EntryTable(tableName);
+            var table = await EntryTable(category);
             var document = dbContext.ToDocument(value);
             document["__Id"] = key;
 
@@ -39,29 +39,26 @@ namespace YS.KeyValue.Impl.Dynamo
         }
 
         public Task<bool> DeleteByKey<T>(string category, string key)
+            where T : class, new()
         {
             throw new NotImplementedException();
         }
 
         public async Task<T> GetByKey<T>(string category, string key)
+               where T : class, new()
         {
-            var tableName = NormalCategoryName(category);
-            var table = await EntryTable(tableName);
+            var table = await EntryTable(category);
             var item = await table.GetItemAsync(key);
             if (item == null) return default;
             item.Remove("__Id");
             return dbContext.FromDocument<T>(item);
         }
 
-        public Task<List<KeyValuePair<string, T>>> ListAll<T>(string category) where T : class
+        public Task<List<KeyValuePair<string, T>>> ListAll<T>(string category) where T :  class, new()
         {
             throw new NotImplementedException();
         }
 
-        private string NormalCategoryName(string category)
-        {
-            return category.Replace('.', '_');
-        }
         private async Task<Table> EntryTable(string tableName)
         {
             if (Table.TryLoadTable(client, tableName, out var table))

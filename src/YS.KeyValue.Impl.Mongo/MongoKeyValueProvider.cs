@@ -30,9 +30,9 @@ namespace YS.KeyValue.Impl.Mongo
         private Lazy<IMongoDatabase> database;
 
         public async Task<T> GetByKey<T>(string category, string key)
+              where T : class, new()
         {
-            var collectionName = NormalCategoryName(category);
-            var collection = await EntryCollection<BsonDocument>(collectionName);
+            var collection = await EntryCollection<BsonDocument>(category);
             var filter = Builders<BsonDocument>.Filter.Eq("_id", key);
             var cursor = await collection.FindAsync(filter);
             var bson = cursor.FirstOrDefault();
@@ -48,9 +48,9 @@ namespace YS.KeyValue.Impl.Mongo
         }
 
         public async Task AddOrUpdate<T>(string category, string key, T value)
+               where T : class, new()
         {
-            var collectionName = NormalCategoryName(category);
-            var collection = await EntryCollection<BsonDocument>(collectionName);
+            var collection = await EntryCollection<BsonDocument>(category);
             var filter = Builders<BsonDocument>.Filter.Eq("_id", key);
             var document = value.ToBsonDocument();
             document["_id"] = key;
@@ -58,19 +58,18 @@ namespace YS.KeyValue.Impl.Mongo
         }
 
         public async Task<bool> DeleteByKey<T>(string category, string key)
+               where T : class, new()
         {
-            var collectionName = NormalCategoryName(category);
-            var collection = await EntryCollection<BsonDocument>(collectionName);
+            var collection = await EntryCollection<BsonDocument>(category);
             var filter = Builders<BsonDocument>.Filter.Eq("_id", key);
             var deleteResult = await collection.DeleteOneAsync(filter);
             return deleteResult.DeletedCount > 0;
 
         }
 
-        public async Task<List<KeyValuePair<string, T>>> ListAll<T>(string category) where T : class
+        public async Task<List<KeyValuePair<string, T>>> ListAll<T>(string category) where T : class, new()
         {
-            var collectionName = NormalCategoryName(category);
-            var collection = await EntryCollection<BsonDocument>(collectionName);
+            var collection = await EntryCollection<BsonDocument>(category);
             var cursor = await collection.FindAsync(_ => true);
             var res = cursor.ToEnumerable().Select(bson =>
                 new KeyValuePair<string, T>(bson["_id"].AsString, BsonSerializer.Deserialize<T>(bson)));
@@ -90,10 +89,7 @@ namespace YS.KeyValue.Impl.Mongo
             return database.Value.GetCollection<T>(collectionName);
         }
 
-        private string NormalCategoryName(string category)
-        {
-            return category.Replace('.', '_');
-        }
+        
 
 
     }
