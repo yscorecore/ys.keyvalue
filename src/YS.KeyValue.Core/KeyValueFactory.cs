@@ -31,6 +31,17 @@ namespace YS.KeyValue
                 this.categoryName = CombinCategoryName(options, categoryName);
                 this.keyValueProvider = keyValueProvider;
             }
+
+            public Task AddOrUpdate(string key, T value)
+            {
+                return keyValueProvider.AddOrUpdate(this.categoryName,key,value);
+            }
+
+            public Task<bool> DeleteByKey(string key)
+            {
+                return keyValueProvider.DeleteByKey<T>(this.categoryName,key);
+            }
+
             public Task<T> GetByKey(string key)
             {
                 return this.keyValueProvider.GetByKey<T>(this.categoryName, key);

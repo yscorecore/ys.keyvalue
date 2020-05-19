@@ -9,7 +9,10 @@ namespace YS.KeyValue
     {
         Task<T> GetByKey(string key);
 
+        Task AddOrUpdate(string key, T value);
 
+        Task<bool> DeleteByKey(string key);
+        
         Task<List<KeyValuePair<string, T>>> ListAll();
     }
 }

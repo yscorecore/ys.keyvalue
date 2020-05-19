@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using YS.KeyValue.Core.UnitTest.Entity;
 using YS.Knife.Hosting;
-
+using Moq;
 namespace YS.KeyValue.Core.UnitTest
 {
     [TestClass]
@@ -22,6 +21,7 @@ namespace YS.KeyValue.Core.UnitTest
         }
         private readonly IKeyValueFactory keyValueFactory;
         private readonly IKeyValueProvider keyValueProvider;
+
         [TestMethod]
         [TestCategory("Factory")]
         public void ShouldCreateKeyValueInstanceUseKeyValueFactory()
@@ -39,29 +39,60 @@ namespace YS.KeyValue.Core.UnitTest
         }
 
         [TestMethod]
+        [TestCategory("Generic")]
         public void ShouldThrowExceptionWhenKeyValueEntityIsGenericType()
         {
             var exception = Assert.ThrowsException<NotSupportedException>(() =>
             {
-                this.GetRequiredService<GenericType<string>>();
-            });
-            Assert.IsNotNull(exception);
-        }
-        [TestMethod]
-        public void ShouldThrowExceptionWhenKeyValueEntityIsNestedType()
-        {
-            var exception = Assert.ThrowsException<NotSupportedException>(() =>
-            {
-                this.GetRequiredService<NestedType>();
+                this.GetRequiredService<IKeyValueService<GenericType<string>>>();
             });
             Assert.IsNotNull(exception);
         }
 
         [TestMethod]
         [TestCategory("Generic")]
-        public void ShouldInvokeProviderGetByKey()
+        public void ShouldThrowExceptionWhenKeyValueEntityIsNestedType()
+        {
+            var exception = Assert.ThrowsException<NotSupportedException>(() =>
+            {
+                this.GetRequiredService<IKeyValueService<NestedType>>();
+            });
+            Assert.IsNotNull(exception);
+        }
+
+        [TestMethod]
+        [TestCategory("Generic")]
+        public async Task ShouldInvokeProviderGetByKey()
         {
             var keyValue = this.GetRequiredService<IKeyValueService<Person>>();
+            await keyValue.GetByKey("input_key");
+            Mock.Get(keyValueProvider).Verify(p => p.GetByKey<Person>(typeof(Person).FullName.ToLower(), "input_key"), Times.Once);
+        }
+
+        [TestMethod]
+        [TestCategory("Generic")]
+        public async Task ShouldInvokeProviderListAll()
+        {
+            var keyValue = this.GetRequiredService<IKeyValueService<Person>>();
+            await keyValue.ListAll();
+            Mock.Get(keyValueProvider).Verify(p => p.ListAll<Person>(typeof(Person).FullName.ToLower()), Times.Once);
+        }
+        [TestMethod]
+        [TestCategory("Generic")]
+        public async Task ShouldInvokeProviderDeleteKey()
+        {
+            var keyValue = this.GetRequiredService<IKeyValueService<Person>>();
+            await keyValue.DeleteByKey("delete_key");
+            Mock.Get(keyValueProvider).Verify(p => p.DeleteByKey<Person>(typeof(Person).FullName.ToLower(), "delete_key"), Times.Once);
+        }
+        [TestMethod]
+        [TestCategory("Generic")]
+        public async Task ShouldInvokeProviderAddOrUpdate()
+        {
+            var keyValue = this.GetRequiredService<IKeyValueService<Person>>();
+            var person = new Person();
+            await keyValue.AddOrUpdate("key", person);
+            Mock.Get(keyValueProvider).Verify(p => p.AddOrUpdate<Person>(typeof(Person).FullName.ToLower(), "key", person), Times.Once);
         }
 
         public class NestedType
